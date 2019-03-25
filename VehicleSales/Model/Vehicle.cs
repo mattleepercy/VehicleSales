@@ -12,8 +12,11 @@ namespace VehicleSales.Model
     {
         [Key]
         public string ID { get; set; }
+        [Required(AllowEmptyStrings = false)]
         public string Make { get; set; }
+        [Required(AllowEmptyStrings = false)]
         public string Model { get; set; }
+        [Required]
         [JsonConverter(typeof(StringEnumConverter))]
         public VehicleType VehicleType { get; protected set; }
     }

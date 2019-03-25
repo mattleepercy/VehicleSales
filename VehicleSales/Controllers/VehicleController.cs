@@ -9,6 +9,7 @@ using VehicleSales.Model;
 
 namespace VehicleSales.Controllers
 {
+    [ApiController]
     [Route("api/vehicle")]
     public class VehicleController : Controller
     {
