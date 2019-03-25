@@ -1,0 +1,93 @@
+<div class="container">
+  <form [formGroup]='vehicleForm' (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="vehicleType">Vehicle Type:</label>
+      <div class="col-sm-10">
+        <select (change)="vehicleTypeChanged($event.target.value)" formControlName="vehicleType" class="form-control">
+          <option *ngFor="let vehicleType of vehicleTypes" [value]="vehicleType">{{vehicleType}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="make">Make</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" formControlName="make" />
+        <div *ngIf="formSubmitted && vehicleForm.controls.make.errors" class="error">
+          <div *ngIf="vehicleForm.controls.make.errors.required">Required field</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="model">Model</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" formControlName="model" />
+        <div *ngIf="formSubmitted && vehicleForm.controls.model.errors" class="error">
+          <div *ngIf="vehicleForm.controls.model.errors.required">Required field</div>
+        </div>
+      </div>
+    </div>
+    <form *ngIf="isCarSelected()" [formGroup]='carForm'>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="engine">Engine</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" formControlName="engine" />
+          <div *ngIf="formSubmitted && carForm.controls.engine.errors" class="error">
+            <div *ngIf="carForm.controls.engine.errors.required">Required field</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="wheels">Wheels</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="number" formControlName="wheels" />
+          <div *ngIf="formSubmitted && carForm.controls.wheels.errors" class="error">
+            <div *ngIf="carForm.controls.wheels.errors.required">Required field</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="doors">Doors</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="number" formControlName="doors" />
+          <div *ngIf="formSubmitted && carForm.controls.doors.errors" class="error">
+            <div *ngIf="carForm.controls.doors.errors.required">Required field</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="carBodyType">Body Type</label>
+        <div class="col-sm-10">
+          <select formControlName="carBodyType" class="form-control">
+            <option *ngFor="let carBodyType of carBodyTypes" [value]="carBodyType">{{carBodyType}}</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <form *ngIf="isBikeSelected()" [formGroup]='bikeForm'>
+      <div class="form-group row">
+        <div class="col-sm-2">Learner Approved</div>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="learnerApproved" />
+          </div>
+          <div *ngIf="formSubmitted && bikeForm.controls.learnerApproved.errors" class="error">
+            <div *ngIf="bikeForm.controls.learnerApproved.errors.required">Required field</div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <form *ngIf="isBoatSelected()" [formGroup]='boatForm'>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="carryingCapacity">Carrying Capacity</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="number" formControlName="carryingCapacity" />
+          <div *ngIf="formSubmitted && boatForm.controls.carryingCapacity.errors" class="error">
+            <div *ngIf="boatForm.controls.carryingCapacity.errors.required">Required field</div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <button class="btn btn-primary" type="submit">Add Vehicle</button>
+  </form>
+</div>

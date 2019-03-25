@@ -1,0 +1,27 @@
+<p *ngIf="!vehicles"><em>Loading...</em></p>
+<div class="container" *ngIf="vehicles">
+    <div class="center" *ngIf="!vehicles.length">
+        <em>No vehicles have been added! Press add to get started</em>
+    </div>
+    <div *ngIf="vehicles.length">
+
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>Vehicle Type</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let vehicle of vehicles">
+                    <td>{{ vehicle.vehicleType }}</td>
+                    <td>{{ vehicle.make }}</td>
+                    <td>{{ vehicle.model }}</td>
+                    <td><button (click)="openVehicleDetails(vehicle.id)">Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

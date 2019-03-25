@@ -1,0 +1,19 @@
+<div class="container">
+  <p *ngIf="!loadedVehicle"><em>Loading vehicle details...</em></p>
+  <div class="container" *ngIf="loadedVehicle">
+      <table class='table'>
+         <thead>
+              <tr>
+                  <th>Field Name</th>
+                  <th>Field Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let vehiclePropName of objectKeys(loadedVehicle)">
+                      <td>{{ vehiclePropName }}</td>
+                      <td>{{ loadedVehicle[vehiclePropName] }}</td>
+                  </tr>
+              </tbody>
+      </table>
+  </div>
+</div>
